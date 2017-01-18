@@ -1,27 +1,21 @@
 <?php
 
-use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-
-
-/* @var $this yii\web\View */
-/* @var $model app\models\Social */
-
 $this->title = '修改首页视频';
 $this->params['breadcrumbs'][] = ['label' => '首页视频', 'url' => ['index']];
 ?>
-<div class="home-video-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<h2>修改首页视频</h2>
 
-	<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+    <form class="form" action="<?= Url::to(['settings/video'])?>" method="post" enctype="multipart/form-data">
 
-	<?= $form->field($model, 'videoFile')->fileInput() ?>
+        <input type="hidden" value="<?php echo Yii::$app->getRequest()->getCsrfToken(); ?>" name="_csrf" />
 
-	<div class="form-group">
-		<?= Html::submitButton('修改', ['class' => 'btn btn-success']) ?>
-	</div>
+        <div class="form-group">
+            <input type="file" name="video">
+        </div>
+        <button class="btn btn-primary">提交</button>
 
-	<?php ActiveForm::end(); ?>
+    </form>
 
-</div>

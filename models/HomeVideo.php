@@ -7,12 +7,15 @@ use yii\web\UploadedFile;
 
 class HomeVideo extends Model
 {
-    public $videoFile;
+    /**
+    ** @var UploadedFile
+    **/
+    public $video;
 
     public function rules() 
     {
         return [
-            [['videoFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'mp4'],
+            [['video'], 'file', 'skipOnEmpty' => false, 'extensions' => 'mp4', 'maxSize' => 500 * 1024 * 1024 * 1024],
         ];
     }
 
@@ -20,7 +23,7 @@ class HomeVideo extends Model
     {
         if ($this->validate()) 
         {
-            $this->videoFile->saveAs('uploads/main.mp4');
+            $this->video->saveAs('uploads/main.mp4');
             return true;
         } else {
             var_dump($this->errors);

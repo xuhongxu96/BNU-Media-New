@@ -44,13 +44,13 @@ echo Carousel::widget([
 -->
 
     <div class="row text-center">
-        <div class="col-lg-3">
+        <div class="col-sm-3">
             <a href="http://weibo.com/lovebnu" target="_blank" class="color-block weibo">
                 <i class="fa fa-weibo fa-5x" aria-hidden="true"></i> <br>
                 @北京师范大学 官方微博
              </a>
         </div>
-        <div class="col-lg-3">
+        <div class="col-sm-3">
             <div class="wechat-outer">
                 <div class="color-block wechat">
                     <div class="content">
@@ -62,8 +62,8 @@ echo Carousel::widget([
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            <video src="uploads/main.mp4" controls="controls">您的浏览器不支持HTML5视频播放，请更新为现代浏览器！</video>
+        <div class="col-sm-6">
+            <video src="uploads/video/main.mp4" controls="controls">您的浏览器不支持HTML5视频播放，请更新为现代浏览器！</video>
         </div>
     </div>
 
@@ -72,14 +72,15 @@ echo Carousel::widget([
         最新资讯<small>NEWS</small>
     </h2>
     <div class="row news-block text-center">
+<?php $i = 0; ?>
 <?php foreach ($news as $item): ?>
-        <div class="col-lg-6">
+        <div class="col-sm-6">
             <div class="news-card">
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-sm-4">
                         <img src="<?= $item->thumbnail ?>">
                     </div>
-                    <div class="col-lg-8">
+                    <div class="col-sm-8">
                             <h4 title="<?= $item->name ?>"><?= $item->name ?></h4>
                             <p title="<?= $item->desp ?>"><?= $item->desp ?></p>
                             <span class="badge"><?= $item->author . " 发表于 " . $item->date ?></span>
@@ -88,6 +89,13 @@ echo Carousel::widget([
                 </div>
             </div>
         </div>
+<?php 
+$i++;
+if ($i % 2 == 0) :
+?>
+    </div>
+    <div class="row news-block text-center">
+<?php endif; ?>
 <?php endforeach; ?>
     </div>
 
@@ -98,8 +106,9 @@ echo Carousel::widget([
 <?php foreach ($socials as $cat => $social) : ?>
     <h3><?= $cat ?></h3>
     <div class="row social-list">
+<?php $i = 0; ?>
 <?php foreach ($social as $item) : ?>
-        <div class="col-lg-3">
+        <div class="col-sm-3">
 <?php if ($item->type == 0):?>
 <!-- 微博 -->
             <a href="<?= $item->url?>" target="_blank">
@@ -115,6 +124,13 @@ echo Carousel::widget([
             </a>
 <?php endif; ?>
         </div>
+<?php
+$i++;
+if ($i % 2 == 0) :?>
+    </div>
+    <div class="row social-list">
+<?php endif; ?>
+
 <?php endforeach; ?>
     </div>
 <?php endforeach; ?>
